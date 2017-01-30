@@ -1,36 +1,22 @@
-// Import the ORM to create functions that will interact with the database.
-var orm = require("../config/orm.js");
+var Sequelize = require("sequelize");
+var sequelize = require("../config/connection.js");
 
-var burgers = {
-
-    // display all burgers
-    all: function (cb) {
-        orm.all("burgers", function (res) {
-            cb(res);
-        });
+var burger = sequelize.define("burgers", {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
     },
-
-    // create a burger
-    create: function (cols, vals, cb) {
-        orm.create("burgers", cols, vals, function (res) {
-            cb(res);
-        });
+    name: {
+        type: Sequelize.STRING
     },
-
-    // update burger when eaten
-    update: function (objColVals, condition, cb) {
-        orm.update("burgers", objColVals, condition, function (res) {
-            cb(res);
-        });
-    },
-
-    // delete burger when digested
-    delete: function (condition, cb) {
-        orm.delete("burgers", condition, function () {
-            cb();
-        });
+    eaten: {
+        type: Sequelize.BOOLEAN
     }
-};
+}, {
+    timestamps: false
+});
 
-// Export the database functions for the controller (burgers_controller.js).
-module.exports = burgers;
+burger.sync();
+
+module.exports = burger;
