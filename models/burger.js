@@ -10,8 +10,9 @@ var burger = sequelize.define("burgers", {
     name: {
         type: Sequelize.STRING
     },
-    eaten: {
-        type: Sequelize.BOOLEAN
+    devoured: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
     }
 }, {
     timestamps: false

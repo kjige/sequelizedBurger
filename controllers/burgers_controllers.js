@@ -18,7 +18,7 @@ router.get("/", function (req, res) {
 router.post("/", function (req, res) {
     burgers.create({
         name: req.body.name,
-        eaten: req.body.eaten
+        devoured: req.body.devoured
     }).then(function () {
         res.redirect("/");
     });
@@ -26,7 +26,7 @@ router.post("/", function (req, res) {
 
 router.put("/:id", function (req, res) {
     burgers.update({
-        eaten: req.body.eaten
+        devoured: req.body.devoured
     }, {
         where: {
             id: req.params.id
