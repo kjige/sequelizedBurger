@@ -4,5 +4,10 @@ ul {
 	padding-left: 0;
 }
 
-li {
+li, h4, img, button, .inline-thing {
+	display: inline;
+}
+
+.icon {
+	margin-right: 10px;
 }
