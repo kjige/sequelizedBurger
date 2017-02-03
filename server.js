@@ -5,24 +5,22 @@ var exphbs = require("express-handlebars");
 
 var db = require("./models");
 
-var PORT = process.env.NODE_ENV || 3000;
 var app = express();
 
-db.sequelize.sync().then(function () {
+var PORT = process.env.NODE_ENV || 3000;
 
+db.sequelize.sync().then(function () {
     app.listen(PORT, function () {
         console.log("Listening on port %s", PORT);
     });
 });
 
-var routes = require("./controllers/burgers_controllers.js");
-
-// Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(process.cwd() + "/public"));
 
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+app.use(bodyParser.json());
 
 app.use(methodOverride("_method"));
 
@@ -34,3 +32,5 @@ app.engine("handlebars", exphbs({
 app.set("view engine", "handlebars");
 
 app.use("/", routes);
+
+require('./controllers/burger_controller.js')(app);
