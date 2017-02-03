@@ -7,5 +7,3 @@ Add burgers to the database, update when they're eaten, and delete them when the
 
 # Technologies
 Node, Express, Handlebars, Sequelize, MySQL
-
-Test branch
