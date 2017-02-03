@@ -1,23 +1,21 @@
-var Sequelize = require("sequelize");
-var sequelize = require("../config/connection.js");
-
-var burger = sequelize.define("burger", {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    name: {
-        type: Sequelize.STRING
-    },
-    devoured: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-    }
-}, {
-    timestamps: false
-});
-
-burger.sync();
-
-module.exports = burger;
+module.exports = function (sequelize, DataTypes) {
+    var Burger = sequelize.define("burger", {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        devoured: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        }
+    });
+    return Burger;
+};
