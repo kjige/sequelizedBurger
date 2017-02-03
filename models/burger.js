@@ -18,9 +18,6 @@ module.exports = function (sequelize, DataTypes) {
         },
         createdAt: {
             type: DataTypes.DATE
-        },
-        updatedAt: {
-            type: DataTypes.DATE
         }
     });
     return Burger;
